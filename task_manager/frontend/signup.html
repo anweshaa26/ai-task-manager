@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sign up - AI Task Manager</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+
+    <body class="homepage">
+        <div class="auth-container">
+            <h1>✨ Create Account</h1>
+
+            <p class="tagline">Let’s get you organized!</p>
+
+            <form id="signupForm" class="auth-form">
+                <input type="text" id="name" placeholder=" Your Name" required> 
+                <input type="email" id="email" placeholder="Email" required>
+
+                <div class="password-container">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <span class="toggle-password" onclick="togglePassword()">👁</span>
+                </div>
+
+                <button type="submit">Sign up</button>
+            </form>
+
+            <p class="auth-link">Already have an account? <a href="signin.html">Sign In</a></p>
+
+            <p id="message"></p>
+        </div>
+
+        <script src="js/auth.js"></script>
+    </body>
+</html>

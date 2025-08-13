@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Trash - AI Task Manager</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1>🗑️ Trash</h1>
+            <nav>
+                <button onclick="backToTasks()">⬅️ Back to Tasks</button>
+                <button onclick="logout()">Log out</button>
+            </nav>
+        </header>
+
+        <section class="task-list">
+            <h2>Trashed Tasks</h2>
+            <div id="trashContainer"></div>
+        </section>
+
+        <script src="js/trash.js"></script>
+    </body>
+</html>

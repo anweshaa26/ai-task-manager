@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tasks - AI Task Manager</title>
+        <link rel="stylesheet" href="css/style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <h1>AI Task Manager</h1>
+
+            <nav>
+                <button onclick="logout()">Log out</button>
+                <button onclick="goToTrash()">Trash</button>
+                <button onclick="openChangePasswordOverlay()">Change Password</button>
+            </nav>
+        </header>
+
+        <div class="task-controls">
+            <button onclick="openAIToolsOverlay()">✨AI Tools</button>
+
+            <div id="aiToolsOverlay" class="overlay-AI" style="display: none;">
+                <div class="overlay-content-AI">
+                    <button class="close-btn-AI" onclick="closeAIToolsOverlay()">X</button>
+
+                    <h3>✨AI Tools</h3>
+
+                    <div class="ai-tools-buttons">
+                        <button onclick="showAIPrompt()">➕Generate Task from Prompt</button>
+                        <button onclick="generateDayPlan()">📅Generate Day Plan</button>
+                        <button onclick="generateSummary()">📝Task Summary</button>
+                        <button onclick="analyzeTrends()">📈Productivity Trends</button>
+                        <!-- <button onclick="showBreakTaskPrompt()">🪶Break Down a Task</button> -->
+                        <!-- <button onclick="getMotivation()">🎉Fun Motivational Quote</button> -->
+                        <!-- <button onclick="prioritizeTasksWithAI()">📊Prioritize Tasks</button> -->
+                        <button onclick="recommendNextTask()">🎯Recommend Next Task</button>
+                        <!-- <button onclick="suggestTasksToDelete()">🗑️Suggest Deletions</button> -->
+                    </div>
+                </div>
+            </div> 
+
+            <button id="addTaskBtn">Add New Task</button>
+            <span id="tasksTodayCount" class="due-today-badge">📅 0 tasks due today</span>
+
+            <input type="text" id="searchInput" placeholder="🔍︎ Search tasks..." oninput="searchTasks()">
+
+            <select id="sortTasks">
+                <option value="dueDate">Sort by Due Date</option>
+                <option value="priority">Sort by Priority</option>
+            </select>
+        </div>
+
+        <div id="taskOverlay" class="overlay" style="display: none;">
+            <div class="overlay-content">
+                <button class="close-btn" onclick="closeTaskOverlay()">x</button>
+
+                <h2 id="overlayHeading">Create New Task</h2>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dueDate">Due Date & Time:</label>
+                        <input type="datetime-local" id="dueDate" name="dueDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="priority">Priority:</label>
+                        <select id="priority" name="priority">
+                            <option value="low" selected>Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="repeat">Repeat:</label>
+                        <select id="repeat" name="repeat">
+                            <option value="none" selected>None</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="formSubmitBtn">Create Task</button>
+                    <p id="createMsg"></p>
+                </form>
+            </div>
+        </div>
+
+        <section class="task-list">
+            <h2>All Tasks:</h2>
+            <div id="taskContainer"></div>
+        </section>
+
+        <div class="pagination">
+            <button id="prevPageBtn">←</button>
+            <button id="nextPageBtn">→</button>
+        </div>
+
+        <script src="js/tasks.js"></script>
+
+        <div id="toast-container"></div>
+
+        <div id="changePasswordOverlay" class="overlay" style="display: none;">
+            <div id="changePasswordContent" class="overlay-content">
+                <button class="close-btn" onclick="closeChangePasswordOverlay()">x</button>
+                <h2>🔒 Change Password</h2>
+
+                <form id="changePasswordForm">
+                <input type="password" id="currentPassword" placeholder="Current Password" required>
+                <input type="password" id="newPassword" placeholder="New Password" required>
+                <button type="submit">Update Password</button>
+                </form>
+                <p id="passwordMsg"></p>
+            </div>
+        </div>
+
+        <div id="aiPromptOverlay" class="overlay-AI" style="display:none;">
+            <div class="overlay-content-AI">
+                <button class="close-btn-AI" onclick="closeAIPromptOverlay()">x</button>
+                <h3>Generate Task from Prompt</h3>
+                <textarea id="aiTaskPrompt" placeholder="Describe your task" rows="4" style="width:350px; padding:10px;"></textarea>
+
+                <div class="ai-tools-buttons">
+                    <button onclick="parseTaskWithAI()">🚀 Parse & Add Task</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div id="breakTaskOverlay" class="overlay-AI" style="display:none;">
+            <div class="overlay-content-AI">
+                <button class="close-btn-AI" onclick="closeBreakTaskOverlay()">x</button>
+                <h3>Describe your complex Task to break down into smaller tasks</h3>
+                <textarea id="breakTaskPrompt" placeholder="Describe your complex task" rows="4" style="width:350px; padding:10px;"></textarea>
+
+                <div class="ai-tools-buttons">
+                    <button onclick="breakDownTask()">submit</button>
+                </div>
+            </div>
+        </div> -->
+    </body>
+</html>
